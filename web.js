@@ -1,4 +1,4 @@
-module.exports = function () {
+module.exports = function (views_path = '../views', public_path = '../public') {
 
     const createError = require('http-errors');
     const express = require('express');
@@ -9,14 +9,14 @@ module.exports = function () {
     const web = express();
 
 // view engine setup
-    web.set('views', path.join(__dirname, '../views'));
+    web.set('views', path.join(__dirname, views_path));
     web.set('view engine', 'pug');
 
     web.use(logger('dev'));
     web.use(express.json());
     web.use(express.urlencoded({extended: false}));
     web.use(cookieParser());
-    var public_path = path.join(__dirname, '../public');
+    var public_path = path.join(__dirname, public_path);
     console.log('public_path', public_path);
     web.use(express.static(public_path));
 
